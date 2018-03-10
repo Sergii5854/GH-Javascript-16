@@ -17,7 +17,7 @@
 
     </style>
     <script type="text/javascript" src="cordova.js"></script>
-    <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ_KQYAlGT2Pf6Ga_TbdAoFPoHy6LVhCM"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ_KQYAlGT2Pf6Ga_TbdAoFPoHy6LVhCM"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
@@ -40,7 +40,8 @@
 
 
 <script type="text/javascript">
-
+    var url = 'https://map-hw16.herokuapp.com/api/v1/events'
+   
     var onSuccess = function(position) {
         var lat =  position.coords.latitude;
         var lng = position.coords.longitude;
@@ -61,8 +62,12 @@
         var element = document.getElementById('map');
         var options = {
             zoom: 12,
-            center: {lat:lat, lng:lng}
-        };
+            center: {
+                lat:  49.444444 || lat, 
+                lng: 32.059799 || lng
+            }
+        }; 
+      
         var eventsMap = new google.maps.Map(element, options);
 
         document.getElementById('btn').onclick =  function() {
@@ -93,7 +98,6 @@
                    var content =  `<div>
                          <h4>${title}</h4><br/>
                          <p>${desc}</p><br/>
-                        
                     </div>`
                     var InfoWindow = new google.maps.InfoWindow({
                         content: content
@@ -102,15 +106,32 @@
                     
                    InfoWindow.open(eventsMap, marker);
                 
-                    marker.onclick = function () {
+                    marker.addListener('click', function () {
                     InfoWindow.open(eventsMap, marker);
-                    };
+                    });
 
                     document.getElementById('title').value = '';
                     document.getElementById('desc').value = '';
                     document.getElementById('map').style.display = 'block';
                     document.getElementById('btn').style.display = 'block';
                     document.getElementById('modal').style.display = 'none';
+
+
+                      function post (){
+                        return axios(url, {
+                            method: 'post',
+                            headers: {
+                            'Content-Type': 'application/json'
+                            },
+                            data: JSON.stringify(data)
+                        }).then((result) => {
+                            return result
+                        }).catch(err => {
+                            console.log(1231232, err)
+                        })
+                    }
+                        post ()
+
                    
                 }
                 google.maps.event.removeListener(listenerHandle);

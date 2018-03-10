@@ -7,11 +7,11 @@
   * jQuery
   * Google maps
 
-  #### create build 
-   $ cordova build android  
+#### create build 
+    $ cordova build android  
 
-  #### start cordova
-   $ cordova run android  
+#### start cordova
+    $ cordova run android  
 
-  #### watch cordova
-   $ cordova run android  --livereload
+#### watch cordova
+    $ cordova run android  --livereload
