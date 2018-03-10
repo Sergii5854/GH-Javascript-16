@@ -5,5 +5,13 @@
   * Cordova
   * JS
   * jQuery
-  * Cordova
   * Google maps
+
+  #### create build 
+   $ cordova build android  
+
+  #### start cordova
+   $ cordova run android  
+
+  #### watch cordova
+   $ cordova run android  --livereload
