@@ -1,6 +1,7 @@
-#hw 16 -  locator of events
+# hw 16 -  locator of events
 
-####Technologies Used:
+#### Technologies Used:
+
   * Cordova
   * JS
   * jQuery
