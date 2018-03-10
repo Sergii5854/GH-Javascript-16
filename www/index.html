@@ -63,8 +63,8 @@
         var options = {
             zoom: 12,
             center: {
-                lat:  49.444444 || lat, 
-                lng: 32.059799 || lng
+                lat:  49.444444 , 
+                lng: 32.059799 
             }
         }; 
       
@@ -75,10 +75,10 @@
             alert('Choose point on map a tap on it');
 
             var listenerHandle = google.maps.event.addListener(eventsMap, 'click', function( event ){
-                console.log(eventsMap)
+           
                 var lat = event.latLng.lat();
                 var lng = event.latLng.lng();
-                console.log(lat, lng)
+               
                 document.getElementById('map').style.display = 'none';
                 document.getElementById('btn').style.display = 'none';
                 document.getElementById('modal').style.display = 'block';
@@ -109,6 +109,26 @@
                     marker.addListener('click', function () {
                     InfoWindow.open(eventsMap, marker);
                     });
+                    var dataEvent = {
+                        lat:lat, 
+                        lng:lng,
+                        title: title,
+                        description: desc
+                    }
+                    alert( JSON.stringify(dataEvent))
+
+                    $.ajax({
+                        url: 'https://map-hw16.herokuapp.com/api/v1/events',
+                        type: 'post',
+                        data: JSON.stringify(dataEvent),
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        dataType: 'json',
+                        success: function () {
+                            alert( JSON.stringify(dataEvent))
+                        }    
+                    })
 
                     document.getElementById('title').value = '';
                     document.getElementById('desc').value = '';
@@ -117,21 +137,9 @@
                     document.getElementById('modal').style.display = 'none';
 
 
-                      function post (){
-                        return axios(url, {
-                            method: 'post',
-                            headers: {
-                            'Content-Type': 'application/json'
-                            },
-                            data: JSON.stringify(data)
-                        }).then((result) => {
-                            return result
-                        }).catch(err => {
-                            console.log(1231232, err)
-                        })
-                    }
-                        post ()
-
+    
+                   
+                 
                    
                 }
                 google.maps.event.removeListener(listenerHandle);

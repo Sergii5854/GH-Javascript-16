@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Sat Mar 10 18:59:01 EET 2018
+#Sat Mar 10 19:54:54 EET 2018
 122.file=/Users/giser/develop/geekhub7/GH-Javascript-16/platforms/android/app/build/intermediates/res/debug/resources-debug.ap_/res/drawable-land-xhdpi-v4/screen.png
 60.set=ASSET
 52.set=ANDROID_RESOURCE
