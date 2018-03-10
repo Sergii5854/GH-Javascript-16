@@ -14,5 +14,17 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-googlemaps": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-googlemaps@^2.2.5"
+    },
+    "is_top_level": true,
+    "variables": {
+      "API_KEY_FOR_ANDROID": "AIzaSyBJ_KQYAlGT2Pf6Ga_TbdAoFPoHy6LVhCM",
+      "PLAY_SERVICES_VERSION": "11.8.0",
+      "ANDROID_SUPPORT_V4_VERSION": "24.1.0"
+    }
   }
 }

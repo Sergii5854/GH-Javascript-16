@@ -1,4 +1,4 @@
-#Fri Mar 02 23:37:55 EET 2018
-base.0=C\:\\Users\\Andrey\\Desktop\\GeekHub\\Homework16\\maps\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+#Sat Mar 10 17:47:24 EET 2018
+base.0=/Users/giser/develop/geekhub7/GH-Javascript-16/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 renamed.0=classes.dex
-file.0=C\:\\Users\\Andrey\\Desktop\\GeekHub\\Homework16\\maps\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0\\classes.dex
+file.0=/Users/giser/develop/geekhub7/GH-Javascript-16/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0/classes.dex
