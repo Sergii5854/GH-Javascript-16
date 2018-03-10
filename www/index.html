@@ -70,21 +70,21 @@
                 data.events.forEach(function(item){
                   
                 var marker = new google.maps.Marker({
-                position:{lat: item.lat, lng:item.lng},
-                map: eventsMap,
-                title: item.title
+                    position:{lat: item.lat, lng:item.lng},
+                    map: eventsMap,
+                    title: item.title
                 })
-                // generate tooltip content
+ 
                 var dataEventFromServer =
                             `<div> <p>${item.title}</p><br/>
                                 <p>${item.description}</p><br/>
                             </div>`
 
                 var infowindow = new google.maps.InfoWindow({
-                content: dataEventFromServer
+                    content: dataEventFromServer
                 })
                 marker.addListener('click', function () {
-                infowindow.open(map, marker)
+                     infowindow.open(map, marker)
                 })
             })
                 marker.setMap(map)
