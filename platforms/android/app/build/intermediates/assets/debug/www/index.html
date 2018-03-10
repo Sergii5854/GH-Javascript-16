@@ -70,7 +70,14 @@
       
         var eventsMap = new google.maps.Map(element, options);
 
+        $.get("https://map-hw16.herokuapp.com/api/v1/events",
+            function(data) {
+                    alert( JSON.stringify(data))
+            }, "json");
         document.getElementById('btn').onclick =  function() {
+
+           
+
 
             alert('Choose point on map a tap on it');
 
