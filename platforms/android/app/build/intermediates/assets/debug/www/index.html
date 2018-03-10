@@ -23,8 +23,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 
-
-
 </head>
 <body>
 <div id="map"></div>
@@ -72,8 +70,30 @@
 
         $.get("https://map-hw16.herokuapp.com/api/v1/events",
             function(data) {
-                    alert( JSON.stringify(data))
+                data.events.forEach(function(item){
+                  
+                var marker = new google.maps.Marker({
+                position:{lat: item.lat, lng:item.lng},
+                map: eventsMap,
+                title: item.title
+                })
+                // generate tooltip content
+                var dataEventFromServer =
+                            `<div> <p>${item.title}</p><br/>
+                                <p>${item.description}</p><br/>
+                            </div>`
+
+                var infowindow = new google.maps.InfoWindow({
+                content: dataEventFromServer
+                })
+                marker.addListener('click', function () {
+                infowindow.open(map, marker)
+                })
+            })
+                marker.setMap(map)
+                
             }, "json");
+
         document.getElementById('btn').onclick =  function() {
 
            

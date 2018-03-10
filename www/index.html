@@ -23,8 +23,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 
 
-
-
 </head>
 <body>
 <div id="map"></div>
@@ -48,15 +46,12 @@
         setTimeout(initMap(lat, lng),30000)
     };
 
-
     function onError(error) {
         alert('code: '    + error.code    + '\n' +
             'message: ' + error.message + '\n');
     }
 
     navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-
 
     function initMap(lat, lng) {
         var element = document.getElementById('map');
@@ -72,12 +67,31 @@
 
         $.get("https://map-hw16.herokuapp.com/api/v1/events",
             function(data) {
-                    alert( JSON.stringify(data))
+                data.events.forEach(function(item){
+                  
+                var marker = new google.maps.Marker({
+                position:{lat: item.lat, lng:item.lng},
+                map: eventsMap,
+                title: item.title
+                })
+                // generate tooltip content
+                var dataEventFromServer =
+                            `<div> <p>${item.title}</p><br/>
+                                <p>${item.description}</p><br/>
+                            </div>`
+
+                var infowindow = new google.maps.InfoWindow({
+                content: dataEventFromServer
+                })
+                marker.addListener('click', function () {
+                infowindow.open(map, marker)
+                })
+            })
+                marker.setMap(map)
+                
             }, "json");
+
         document.getElementById('btn').onclick =  function() {
-
-           
-
 
             alert('Choose point on map a tap on it');
 
@@ -122,7 +136,7 @@
                         title: title,
                         description: desc
                     }
-                    alert( JSON.stringify(dataEvent))
+                  
 
                     $.ajax({
                         url: 'https://map-hw16.herokuapp.com/api/v1/events',
@@ -133,7 +147,7 @@
                         },
                         dataType: 'json',
                         success: function () {
-                            alert( JSON.stringify(dataEvent))
+                            console.log( JSON.stringify(dataEvent))
                         }    
                     })
 
@@ -143,14 +157,8 @@
                     document.getElementById('btn').style.display = 'block';
                     document.getElementById('modal').style.display = 'none';
 
-
-    
-                   
-                 
-                   
                 }
                 google.maps.event.removeListener(listenerHandle);
-               
             });
 
         };
@@ -159,8 +167,6 @@
     $(document).ready(function() {
         Materialize.updateTextFields();
     });
-
-
 
 </script>
 
